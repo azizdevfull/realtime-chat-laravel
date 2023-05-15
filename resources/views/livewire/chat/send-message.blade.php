@@ -1,13 +1,19 @@
 <div>
-    {{-- The Master doesn't talk, he acts. --}}
-    <form action="">
-    <div class="chatbox_footer">
+    {{-- The whole world belongs to you. --}}
 
+    @if ($selectedConversation)
+
+        <form wire:submit.prevent='sendMessage' action="">
+            <div class="chatbox_footer">
             <div class="custom_form_group">
-                <input type="text" class="control" placeholder="Write message">
-                <button type="submit" class="submit">Send</button>
+
+                <input wire:model='body' type="text" id="sendMessage" class="control" placeholder="Write message">
+            <button type="submit" class="submit">Send</button>
             </div>
 
-        </div>
-    </form>
+            </div>
+        </form>
+
+    @endif
+
 </div>
