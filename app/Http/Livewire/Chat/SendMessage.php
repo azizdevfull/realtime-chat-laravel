@@ -14,7 +14,7 @@ class SendMessage extends Component
     public $receiverInstance;
     public $body;
     public $createdMessage;
-    protected $listeners = ['updateSendMessage'];
+    protected $listeners = ['updateSendMessage','sendMessage'];
 
 
     function updateSendMessage(Conversation $conversation, User $receiver)
