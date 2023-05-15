@@ -1,4 +1,9 @@
 <div>
-    {{-- Stop trying to control. --}}
-    chat-list
+   <div class="chatlist_header">
+
+   </div>
+
+   <div class="chatlist_body">
+
+   </div>
 </div>

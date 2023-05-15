@@ -2,3 +2,59 @@
 {
     font-size: 45px;
 }
+.chat_container {
+    position: fixed;
+    width: 100%;
+    left: 2.5%;
+    height: 87%;
+    border: 1px solid gray;
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.chat_list_container{
+    border: 1px solid gray;
+    width: 25%;
+    height: 100%;
+
+    .chatlist_header{
+        border: 1px solid gray;
+        height: 60px;
+    }
+
+
+
+
+    .chatlist_body{
+
+    }
+}
+
+.chat_box_container
+{
+    position: relative;
+    width: 75%;
+    height: 100%;
+    border: 1px solid gray;
+    .chatbox_header{
+        width: 100%;
+        position: absolute;
+        top: 0;
+        border: 1px solid gray;
+        height: 60px;
+    }
+
+    .chatbox_body{
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        border: 1px solid blue;
+    }
+    .chatbox_footer{
+        width: 100%;
+        border: 1px solid green;
+        position: absolute;
+        bottom: 0;
+    }
+}
