@@ -1,7 +1,29 @@
 <div>
     {{-- Care about people's approval and you will be their prisoner. --}}
     <div class="chatbox_header">
-        header
+       <div class="return">
+        <i class="bi bi-arrow-left"></i>
+       </div>
+
+        <div class="img_container">
+            <img src="https://picsum.photos/id/231/200/300" alt="">
+        </div>
+
+        <div class="name">
+            Aziz
+        </div>
+
+        <div class="info">
+            <div class="info_item">
+                <i class="bi bi-telephone-fill"></i>
+            </div>
+            <div class="info_item">
+                <i class="bi bi-image"></i>
+            </div>
+            <div class="info_item">
+                <i class="bi bi-info-circle-fill"></i>
+            </div>
+        </div>
     </div>
 
     <div class="chatbox_body">
