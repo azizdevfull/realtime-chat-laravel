@@ -9,11 +9,11 @@
     </div>
    </div>
 
+   <div class="chatlist_body" >
    @if (count($conversations) > 0 )
    @foreach ($conversations as $conversation)
 
-   <div class="chatlist_body">
-       <div class="chatlist_item">
+       <div class="chatlist_item" wire:key='{{$conversation->id}}'  wire:click="$emit('chatUserSelected', {{$conversation}},{{$this->getChatUserInstance($conversation, $name = 'id') }})">
            <div class="chatlist_img_container">
              <img src="https://picsum.photos/id/{{ $this->getChatUserInstance($conversation,$name='id') }}/200/300" alt="">
             </div>
@@ -32,10 +32,10 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    @endforeach
-   @else
-   you have no conversations
-    @endif
+        @endforeach
+        @else
+        you have no conversations
+        @endif
+    </div>
 </div>
