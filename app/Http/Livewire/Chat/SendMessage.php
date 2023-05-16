@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Chat;
 use App\Models\User;
 use App\Models\Message;
 use Livewire\Component;
+use App\Events\MessageSent;
 use App\Models\Conversation;
 
 class SendMessage extends Component
@@ -14,8 +15,7 @@ class SendMessage extends Component
     public $receiverInstance;
     public $body;
     public $createdMessage;
-    protected $listeners = ['updateSendMessage','sendMessage'];
-
+    protected $listeners = ['updateSendMessage', 'dispatchMessageSent'];
 
     function updateSendMessage(Conversation $conversation, User $receiver)
     {
@@ -52,6 +52,13 @@ class SendMessage extends Component
         $this->emitSelf('dispatchMessageSent');
         // dd($this->body);
         # code..
+    }
+
+    public function dispatchMessageSent()
+    {
+
+        broadcast(new MessageSent(Auth()->user(), $this->createdMessage, $this->selectedConversation, $this->receiverInstance));
+
     }
 
 
