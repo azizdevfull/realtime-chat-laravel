@@ -47,6 +47,15 @@ class Chatbox extends Component
         # code...
     }
 
+    public function resetComponent()
+    {
+
+  $this->selectedConversation= null;
+  $this->receiverInstance= null;
+
+        # code...
+    }
+
     function broadcastedMessageReceived($event)
     {
         ///here

@@ -9,7 +9,6 @@ use App\Models\Conversation;
 class ChatList extends Component
 {
 
-
     public $auth_id;
     public $conversations;
     public $receiverInstance;
@@ -30,17 +29,17 @@ $this->receiverInstance= null;
   }
 
 
-  public function chatUserSelected(Conversation $conversation,$receiverId)
-  {
+     public function chatUserSelected(Conversation $conversation,$receiverId)
+     {
 
-   //  dd($conversation,$receiverId);
-   $this->selectedConversation= $conversation;
-   $receiverInstance= User::find($receiverId);
-         $this->emitTo('chat.chatbox','loadConversation', $this->selectedConversation,$receiverInstance);
-         $this->emitTo('chat.send-message','updateSendMessage',$this->selectedConversation,$receiverInstance);
+      //  dd($conversation,$receiverId);
+      $this->selectedConversation= $conversation;
+      $receiverInstance= User::find($receiverId);
+            $this->emitTo('chat.chatbox','loadConversation', $this->selectedConversation,$receiverInstance);
+            $this->emitTo('chat.send-message','updateSendMessage',$this->selectedConversation,$receiverInstance);
 
-      # code...
-  }
+         # code...
+     }
     public function getChatUserInstance(Conversation $conversation, $request)
     {
         # code...
