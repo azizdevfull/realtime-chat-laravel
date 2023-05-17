@@ -17,41 +17,43 @@ class MessageSent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $user;
-    public $message;
-    public $conversation;
-    public $receiver;
-   
+public $user;
+public $message;
+public $conversation;
+public $receiver;
+
     public function __construct(User $user,Message $message,Conversation $conversation,User $receiver)
     {
-        //
-        $this->user = $user;
-        $this->message = $message;
-        $this->conversation = $conversation;
-        $this->receiver = $receiver;
+
+        $this->user= $user;
+        $this->message= $message;
+        $this->conversation= $conversation;
+        $this->receiver= $receiver;
     }
 
-    public function broadcastWith()
+
+    public function broadcastWith( )
     {
+
         return [
-            'user_id' => $this->user->id,
-            'message'=>$this->message->id,
-            'conversation_id' => $this->conversation->id,
-            'receiver_id' => $this->receiver->id,
+             'user_id'=>$this->user->id,
+             'message'=>$this->message->id,
+             'conversation_id'=>$this->conversation->id,
+             'receiver_id'=>$this->receiver->id,
         ];
+        # code...
     }
+
 
     /**
      * Get the channels the event should broadcast on.
      *
-     * @return array<int, \Illuminate\Broadcasting\Channel>
+     * @return \Illuminate\Broadcasting\Channel|array
      */
-    public function broadcastOn(): array
+    public function broadcastOn()
     {
         error_log($this->user);
         error_log($this->receiver);
-        return [
-            new PrivateChannel('chat.' .$this->receiver->id),
-        ];
+        return new PrivateChannel('chat.' .$this->receiver->id);
     }
 }

@@ -6,7 +6,7 @@ use App\Models\Conversation;
 use App\Models\Message;
 use App\Models\User;
 use Livewire\Component;
-
+use App\Events\MessageSent;
 class Chatbox extends Component
 {
     public $selectedConversation;
@@ -16,7 +16,36 @@ class Chatbox extends Component
     public $message_count;
     public $messages_count;
     public $paginateVar = 10;
-    protected $listeners = ['loadConversation', 'pushMessage','loadmore'];
+    // protected $listeners = [ 'loadConversation', 'pushMessage', 'loadmore', 'updateHeight', "echo-private:chat. {$auth_id},MessageSent"=>'broadcastedMessageReceived',];
+
+    public function  getListeners()
+    {
+
+        $auth_id = auth()->user()->id;
+        return [
+            "echo-private:chat.{$auth_id},MessageSent" => 'broadcastedMessageReceived',
+            // "echo-private:chat.{$auth_id},MessageRead" => 'broadcastedMessageRead',
+            'loadConversation', 'pushMessage', 'loadmore', 'updateHeight','broadcastMessageRead','resetComponent'
+        ];
+    }
+
+    public function broadcastedMessageRead($event)
+    {
+        dd($event);
+
+        // if($this->selectedConversation){
+
+
+
+        //     if((int) $this->selectedConversation->id === (int) $event['conversation_id']){
+
+        //         $this->dispatchBrowserEvent('markMessageAsRead');
+        //     }
+
+        // }
+
+        # code...
+    }
 
     public function pushMessage($messageId)
     {
@@ -25,6 +54,8 @@ class Chatbox extends Component
         $this->dispatchBrowserEvent('rowChatToBottom');
         # code...
     }
+
+
 
     public function loadConversation(Conversation $conversation, User $receiver)
     {
