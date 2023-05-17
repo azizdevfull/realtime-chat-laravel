@@ -10,7 +10,8 @@ use App\Models\Conversation;
 class CreateChat extends Component
 {
     public $users;
-    public $message = 'Hello how are you';
+    public $message= 'hello how are you ';
+
 
     public function checkconversation($receiverId)
     {
@@ -24,7 +25,7 @@ class CreateChat extends Component
 
      // dd(no conversation);
 
-            $createdConversation= Conversation::create(['receiver_id'=>$receiverId,'sender_id'=>auth()->user()->id]);
+            $createdConversation= Conversation::create(['receiver_id'=>$receiverId,'sender_id'=>auth()->user()->id,'last_time_message'=>0]);
           /// conversation created
 
             $createdMessage= Message::create(['conversation_id'=>$createdConversation->id,'sender_id'=>auth()->user()->id,'receiver_id'=>$receiverId,'body'=>$this->message]);

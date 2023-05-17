@@ -10,12 +10,23 @@ use App\Models\Conversation;
 
 class SendMessage extends Component
 {
-
     public $selectedConversation;
     public $receiverInstance;
     public $body;
     public $createdMessage;
-    protected $listeners = ['updateSendMessage', 'dispatchMessageSent'];
+    protected $listeners = ['updateSendMessage', 'dispatchMessageSent','resetComponent'];
+
+
+    public function resetComponent()
+    {
+
+  $this->selectedConversation= null;
+  $this->receiverInstance= null;
+
+        # code...
+    }
+
+
 
     function updateSendMessage(Conversation $conversation, User $receiver)
     {
@@ -25,6 +36,9 @@ class SendMessage extends Component
         $this->receiverInstance = $receiver;
         # code...
     }
+
+
+
 
     public function sendMessage()
     {
@@ -54,14 +68,14 @@ class SendMessage extends Component
         # code..
     }
 
+
+
     public function dispatchMessageSent()
     {
 
         broadcast(new MessageSent(Auth()->user(), $this->createdMessage, $this->selectedConversation, $this->receiverInstance));
-
+        # code...
     }
-
-
     public function render()
     {
         return view('livewire.chat.send-message');
